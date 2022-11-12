@@ -1,19 +1,13 @@
-package Banca.security;
+package com.example.java_venerdi_s7.security;
 
-import java.util.Date;
 
+import io.jsonwebtoken.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import Banca.security.details.UserDetailsImpl;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
-import io.jsonwebtoken.UnsupportedJwtException;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Date;
 
 @Slf4j
 @Component
@@ -25,20 +19,20 @@ public class JwtUtils {
 	@Value("${jwt.expirationms}")
 	private Long jwtExpirationMs;
 
-	public String generateJwtToken(Authentication authentication) {
-		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-
-		Date now = new Date();
-		Date exp = new Date((now).getTime() + jwtExpirationMs);
-		userPrincipal.setExpirationTime(exp);
-
-		return Jwts.builder()
-				.setSubject((userPrincipal.getUsername()))
-				.setIssuedAt(now)
-				.setExpiration(exp)
-				.signWith(SignatureAlgorithm.HS512, jwtSecret)
-				.compact();
-	}
+//	public String generateJwtToken(Authentication authentication) {
+//		UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
+//
+//		Date now = new Date();
+//		Date exp = new Date((now).getTime() + jwtExpirationMs);
+//		userPrincipal.setExpirationTime(exp);
+//
+//		return Jwts.builder()
+//				.setSubject((userPrincipal.getUsername()))
+//				.setIssuedAt(now)
+//				.setExpiration(exp)
+//				.signWith(SignatureAlgorithm.HS512, jwtSecret)
+//				.compact();
+//	}
 
 	public String getUserNameFromJwtToken(String token) {
 		return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody().getSubject();

@@ -1,18 +1,18 @@
-package Banca.security.details;
+package com.example.java_venerdi_s7.security.details;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
+import com.example.java_venerdi_s7.entities.Sonda;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import Banca.entity.User;
-import lombok.Data;
+import java.io.Serial;
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class UserDetailsImpl implements UserDetails {
@@ -20,6 +20,7 @@ public class UserDetailsImpl implements UserDetails {
     /**
      *
      */
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;
@@ -51,13 +52,13 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build( User user ) {
-        List<GrantedAuthority> authorities = user.getRoles()
+    public static UserDetailsImpl build( Sonda sonda ) {
+        List<GrantedAuthority> authorities = sonda.getRoles()
                 .stream()
                 .map( role -> new SimpleGrantedAuthority( role.getRoleType().name() ) )
                 .collect( Collectors.toList() );
-        return new UserDetailsImpl( user.getId(), user.getUsername(), user.getPassword(),
-                user.getActive(), authorities );
+        return new UserDetailsImpl( sonda.getId(), sonda.getUsername(), sonda.getPassword(),
+                sonda.getActive(), authorities );
     }
 
 }

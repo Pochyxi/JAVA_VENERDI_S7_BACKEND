@@ -1,4 +1,4 @@
-package Banca.security;
+package com.example.java_venerdi_s7.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -14,15 +14,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import Banca.security.details.UserDetailsServiceImpl;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig {
 
-	@Autowired
-	UserDetailsServiceImpl userDetailsService;
+//	@Autowired
+//	UserDetailsServiceImpl userDetailsService;
 
 	@Autowired
 	private AuthEntryPointUnauthorizedJwt unauthorizedHandler;

@@ -1,11 +1,11 @@
-package Banca.security.login;
-
-import java.util.Date;
-import java.util.List;
+package com.example.java_venerdi_s7.security.login;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.Date;
+import java.util.List;
 
 @Setter
 @Getter

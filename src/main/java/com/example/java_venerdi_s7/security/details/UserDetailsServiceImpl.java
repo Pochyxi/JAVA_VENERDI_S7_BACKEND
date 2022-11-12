@@ -1,28 +1,28 @@
-package Banca.security.details;
+package com.example.java_venerdi_s7.security.details;
 
-import java.util.Optional;
 
+import com.example.java_venerdi_s7.entities.Sonda;
+import com.example.java_venerdi_s7.repository.SondaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import Banca.entity.User;
-import Banca.repositories.UserRepository;
+import java.util.Optional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
-	UserRepository ur;
+	SondaRepository sr;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<User> user = ur.findByUsername(username);
+		Optional<Sonda> sonda = sr.findByUsername(username);
 
-		if (user.isPresent()) {
-			return UserDetailsImpl.build(user.get());
+		if (sonda.isPresent()) {
+			return UserDetailsImpl.build(sonda.get());
 		} else {
 			throw new UsernameNotFoundException("User Not Found with username: " + username);
 		}
