@@ -81,7 +81,6 @@ public class SondaController {
         Sonda u = ss.getById(id);
         u.addRole(rs.getByRole(roleType));
 
-
         ss.update(u);
     }
 

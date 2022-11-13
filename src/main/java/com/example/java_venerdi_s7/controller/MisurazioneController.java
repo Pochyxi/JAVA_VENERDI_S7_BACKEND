@@ -14,7 +14,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -29,7 +28,7 @@ public class MisurazioneController {
     SondaService ss;
 
     @GetMapping("")
-    public List<Misurazione> getAllPayments() {
+    public List<Misurazione> getAllMisurazioni() {
         return ms.getAll();
     }
 
