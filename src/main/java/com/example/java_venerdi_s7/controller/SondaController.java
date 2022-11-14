@@ -20,6 +20,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequestMapping("/api/sonde")
+@CrossOrigin(origins = "*")
 public class SondaController {
     @Autowired
     private SondaService ss;
@@ -67,6 +68,32 @@ public class SondaController {
         }
     }
 
+    @PostMapping("/new/{nomeSonda}/{username}/{password}/{latitudine}/{longitudine}")
+    public Sonda create(
+            @PathVariable("nomeSonda") String nomeSonda,
+            @PathVariable("username") String username,
+            @PathVariable("password") String password,
+            @PathVariable("latitudine") double latitudine,
+            @PathVariable("longitudine") double longitudine
+    ) {
+        try {
+            Sonda sonda = new Sonda();
+            sonda.setNomeSonda(nomeSonda);
+            sonda.setUsername(username);
+            sonda.setPassword(password);
+            sonda.setLatitudine(latitudine);
+            sonda.setLongitudine(longitudine);
+            ss.save(sonda);
+
+            return sonda;
+        } catch (Exception e) {
+            log.error(e.getMessage());
+        }
+
+        return null;
+
+    }
+
     @PutMapping("")
     public void update(@RequestBody Sonda sonda) {
         try {
@@ -84,8 +111,7 @@ public class SondaController {
         ss.update(u);
     }
 
-    @DeleteMapping("/{id}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/delete/{id}")
     public void deleteById(@PathVariable Long id) {
         try {
             ss.delete(id);

@@ -69,6 +69,7 @@ public class MisurazioneController {
             m.setSmokeLevel( smoke_level );
             m.setSonda( so );
             ms.save( m );
+
             return m;
         } else {
             throw new Exception( "l'utente non ha i permessi per effettuare questa transazione" );

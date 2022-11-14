@@ -42,7 +42,7 @@ public class SondaService {
 		if (u.isPresent()) {
 			repository.delete(u.get());
 		} else {
-			throw new Exception("Utente non trovato");
+			throw new Exception("Sonda non trovato");
 		}
 	}
 
