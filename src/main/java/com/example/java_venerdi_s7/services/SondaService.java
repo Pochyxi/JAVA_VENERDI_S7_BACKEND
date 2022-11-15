@@ -1,5 +1,6 @@
 package com.example.java_venerdi_s7.services;
 
+import com.example.java_venerdi_s7.entities.Misurazione;
 import com.example.java_venerdi_s7.entities.Sonda;
 import com.example.java_venerdi_s7.repository.SondaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 

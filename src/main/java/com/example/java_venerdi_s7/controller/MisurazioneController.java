@@ -78,22 +78,22 @@ public class MisurazioneController {
 
     // QUESTO NON FUNZIONA : "Cannot invoke \"java.lang.Integer.intValue()\" because \"sondaId\" is null"
     // APPROFONDIRE IL PERCHE'
-//    @PostMapping("/new")
-//    public void create(
-//            @RequestParam(value="sondaId") Integer sondaId,
-//            @RequestParam(value="smokeLevel") Integer smokeLevel ) throws Exception {
-//
-//        Sonda so = ss.getById( ( long ) sondaId );
-//
-//        if( so != null ) {
-//            Misurazione m = new Misurazione();
-//            m.setSmokeLevel( smokeLevel );
-//            m.setSonda( so );
-//            ms.save( m );
-//        } else {
-//            throw new Exception( "la sonda non ha i permessi per effettuare questa operazione" );
-//        }
-//    }
+    @PostMapping("/new-json")
+    public void createJson(
+            @RequestParam(value="sondaId") Integer sondaId,
+            @RequestParam(value="smokeLevel") Integer smokeLevel ) throws Exception {
+
+        Sonda so = ss.getById( ( long ) sondaId );
+
+        if( so != null ) {
+            Misurazione m = new Misurazione();
+            m.setSmokeLevel( smokeLevel );
+            m.setSonda( so );
+            ms.save( m );
+        } else {
+            throw new Exception( "la sonda non ha i permessi per effettuare questa operazione" );
+        }
+    }
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")

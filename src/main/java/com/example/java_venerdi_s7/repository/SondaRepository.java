@@ -10,4 +10,6 @@ import java.util.Optional;
 public interface SondaRepository extends JpaRepository<Sonda, Long> {
 
     Optional<Sonda> findByUsername( String username);
+
+
 }

@@ -1,5 +1,6 @@
 package com.example.java_venerdi_s7.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,6 +40,11 @@ public class Sonda {
     private Set<Role> roles = new HashSet<Role>();
 
     private Boolean active = true;
+
+
+    @OneToMany(mappedBy = "sonda", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<Misurazione> misurazioni;
 
     public Sonda(String nomeSonda, String username, String password) {
 

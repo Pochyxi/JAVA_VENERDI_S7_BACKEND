@@ -59,7 +59,7 @@ public class SondaController {
 
     }
 
-    @PostMapping("/new")
+    @PostMapping("/new-raw")
     public void create(@RequestBody Sonda sonda) {
         try {
             ss.save(sonda);
